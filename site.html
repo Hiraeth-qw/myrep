@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyWebApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
-
         *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body{
-            font-family: 'Kanit', sans-serif;
+            font-family: "Kanit", sans-serif;
             font-weight: 300;
             color: var(--tg-theme-text-color);
             background: var(--tg-theme-bg-color);
@@ -25,6 +26,7 @@
             text-align: center;
         }
         h1{
+            font-size: large;
             margin-top: 50px;
             margin-bottom: 10px;
         }
@@ -79,19 +81,23 @@
             Купить
         </button>
     </div>
-    <form id="form">
-        <input type="text" placeholder="Введите имя" id="user_name">
-        <input type="text" placeholder="Введите email" id="user_email">
-        <input type="text" placeholder="Введите номер телефона" id="user_phone">
-        <button id="order">Оформить</button>
-    </form>
+    <div id="form">
+        <h1>Оформление покупки</h1>
+        <form>
+            <input type="text" placeholder="Введите имя" id="user_name">
+            <input type="text" placeholder="Введите email" id="user_email">
+            <input type="text" placeholder="Введите номер телефона" id="user_phone">
+            <button id="order">Оформить</button>
+        </form>
+    </div>
+    
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
         let buy = document.getElementById("buy");
         let order = document.getElementById("order");
         tg.expand();
-        
+
         buy.addEventListener("click", () => {
             document.getElementById("main").style.display = "none";
             document.getElementById("form").style.display = "block"
