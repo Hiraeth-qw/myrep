@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyWebApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: "Kanit", sans-serif;   
+            font-weight: 300;
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+        }
+        #main{
+            width: 100%;
+            padding: 20px;
+            display: block;
+            text-align: center;
+        }
+        h1{
+            font-size: x-large;
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+        img{
+            width: 300px;
+            margin: 30px auto;
+        }
+        p{
+            width: 350px;
+            margin: 0 auto;
+        }
+        button{
+            border: 0;
+            border-radius: 5px;
+            margin-top: 50px;
+            height: 60px;
+            width: 80px;
+            font-size: small;
+            font-weight:500;
+            cursor: pointer;
+            transition: all 500ms ease;
+            color: var(--tg-theme-button-text-color);
+            background: var(--tg-theme-button-color);
+        }
+        button:hover{
+            background: var(--tg-theme-secondary-bg-color);
+        }
+        #form{
+            display: none;
+            text-align: center;
+        }
+        input{
+            width: 90%;
+            outline: none;
+            margin: 10px 5%;
+            padding: 15px 10px;
+            font-size: 14px;
+            border: 2px solid silver;
+            border-radius: 5px;
+        }
+        input:focus{
+            border-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1>Магазин</h1>
+        <img src="https://les-stroi.ru/wp-content/uploads/3/c/3/3c394fc2cdd64773e81077bf714c4796.jpeg">
+        <p>Ыыыы эщкере эщкере эщкере эщкере</p>
+        <button id="buy">
+            Купить
+        </button>
+    </div>
+    <div id="form">
+        <h1>Оформление покупки</h1>
+        <form>
+            <input type="text" placeholder="Имя" id="user_name">
+            <input type="text" placeholder="Email" id="user_email">
+            <input type="text" placeholder="Номер телефона" id="user_phone">
+            <div id="error"></div>
+            <button id="order">Оформить</button>
+        </form>
+    </div>
+    
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let buy = document.getElementById("buy");
+        let order = document.getElementById("order");
+        tg.expand();
+
+        buy.addEventListener("click", () => {
+            document.getElementById("main").style.display = "none";
+            document.getElementById("form").style.display = "block";
+        });
+
+        order.addEventListener("click", () => {
+            document.getElementById("error").innerText = '';
+            let uname = document.getElementById("user_name").value;
+            let mail = document.getElementById("user_email").value;
+            let number = document.getElementById("user_phone").value;
+
+            if (uname.lenght < 5){
+                document.getElementById("error").innerText = 'Ошибка в имени';
+                return;
+            }
+            if (mail.lenght < 5 ){
+                document.getElementById("error").innerText = 'Ошибка в почте';
+                return;
+            }
+            if (number.lenght < 11){
+                document.getElementById("error").innerText = 'Ошибка в номере';
+                return;
+            }
+            
+            let data = {
+                name: uname,
+                email: mail,
+                phone: number
+            }
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        })
+    </script>
+</body>
+</html>
