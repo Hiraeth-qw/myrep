@@ -105,6 +105,7 @@
         });
 
         order.addEventListener("click", () => {
+            event.preventDefault();
             document.getElementById("error").innerText = '';
             let uname = document.getElementById("user_name").value;
             let mail = document.getElementById("user_email").value;
