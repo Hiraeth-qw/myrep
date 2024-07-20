@@ -114,7 +114,7 @@
                 document.getElementById("error").innerText = 'Ошибка в имени';
                 return;
             }
-            if (mail.includes('@') == False){
+            if (mail.length < 5){
                 document.getElementById("error").innerText = 'Ошибка в почте';
                 return;
             }
