@@ -124,9 +124,9 @@
             }
             
             let data = {
-                name: uname,
-                email: mail,
-                phone: number
+                'name': uname,
+                'email': mail,
+                'phone': number
             }
             tg.sendData(JSON.stringify(data));
             tg.close();
