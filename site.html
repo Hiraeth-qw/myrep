@@ -110,15 +110,15 @@
             let mail = document.getElementById("user_email").value;
             let number = document.getElementById("user_phone").value;
 
-            if (uname.lenght < 5){
+            if (uname.length < 5){
                 document.getElementById("error").innerText = 'Ошибка в имени';
                 return;
             }
-            if (mail.lenght < 5 ){
+            if (mail.includes('@') == False){
                 document.getElementById("error").innerText = 'Ошибка в почте';
                 return;
             }
-            if (number.lenght < 11){
+            if (number.length < 11){
                 document.getElementById("error").innerText = 'Ошибка в номере';
                 return;
             }
